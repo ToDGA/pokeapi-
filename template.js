@@ -1,13 +1,13 @@
 function showRenderedPokemonMainData(i, pokemon, allTypes, pokeType) {
-    return `
-    <div class="cards-layout shadow-lg p-3 mb-5 bg-body-tertiary rounded"> <!-- Bootstrap column for responsive card layout -->
-        <div class="card text-center ${pokeType}" style="width: 18rem;" onclick="fetchPokemonCardData(${pokemon.id})">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg" class="card-img-top" alt="${pokemon.name}"> 
-            <div class="card-body">
+    return ` <div class="cards-layout shadow-lg p-3 mb-5 bg-body-tertiary rounded"> <!-- Bootstrap column for responsive card layout -->
+                <div class="card text-center ${pokeType}" style="width: 18rem;" onclick="fetchPokemonCardData(${pokemon.id})">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg" class="card-img-top" alt="${pokemon.name}"> 
+                <div class="card-body">
                 <h5 class="card-title">${capitalize(pokemon.name)}</h5> 
                 <p class="card-text">ID: #${pokemon.id}</p> 
                 <div>${allTypes}</div> 
                <div>HP: ${pokemon.stats.find(stat => stat.stat.name === 'hp').base_stat}</div>
+               <div>AP: ${pokemon.stats.find(stat => stat.stat.name === 'attack').base_stat}</div>
             </div>
         </div>
     </div>`;
