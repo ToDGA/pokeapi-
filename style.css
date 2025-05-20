@@ -1,0 +1,95 @@
+body{
+    /* background-color: ; */
+background-color:whitesmoke;
+}
+
+.bg_grass {
+    background-color: green;
+}
+
+.P-ball {
+    width: 50px;
+}
+
+.container-fluid {
+
+    background-color: #FECA1B;
+}
+
+.navbar-brand{
+    color:#3761A8
+}
+
+.pokemon-card{
+    margin-bottom: 20px;
+}
+
+.container mt-5{
+ 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 auto;
+}
+.pokedex{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 72px;
+    width: 90%;
+    max-width: 1920px;
+    margin: 0 auto;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.cards-layout{
+    padding:4px;
+    border:1px solid white;
+    margin-top: 8px;
+    border-radius:8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cards-layout:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.card-img-top{
+    max-width: 200px; height: auto;
+}
+
+.footer{
+display: flex;
+    justify-content: center;
+    padding: 18px;
+}
+
+.modal-content{
+    align-items: center;
+    justify-content: center;
+    width:160%;
+    
+}
+
+.modal-header{
+    gap: 23px;
+    display: flex;
+}
+
+.poke-card-modal {
+    display: none; /* Initial versteckt */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}

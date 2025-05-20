@@ -1,0 +1,61 @@
+/* Style for the loading screen container */
+#loading-screen {
+    display: flex; /* Use flexbox layout for centering */
+    height: 100vh; /* Set height to full viewport height */
+}
+
+/* Main Pokéball animation element */
+.loading-screen-animation {
+    position: fixed; /* Fix position relative to the viewport */
+    top: 50%; /* Position from the top at 50% of the viewport height */
+    left: 50%; /* Position from the left at 50% of the viewport width */
+    transform: translate(-50%, -50%); /* Center the element by offsetting its own width and height */
+    z-index: 1000; /* Ensure this element appears above other content */
+    width: 80px; /* Set width of the Pokéball */
+    height: 80px; /* Set height of the Pokéball */
+    border-radius: 50%; /* Make it circular */
+    background: linear-gradient(180deg, red 50%, white 50%); /* Create a gradient background (red on top, white on bottom) */
+    border: 4px solid black; /* Add a solid black border around the Pokéball */
+    animation: spin 3s linear infinite; /* Apply a spinning animation that lasts 1.2 seconds and repeats infinitely */
+}
+
+/* Center button of the Pokéball */
+.loading-screen-animation::before {
+    content: ''; /* Required for pseudo-elements, no content needed here */
+    position: absolute; /* Position it absolutely within the parent element */
+    top: 50%; /* Position from the top at 50% of the parent height */
+    left: 50%; /* Position from the left at 50% of the parent width */
+    transform: translate(-50%, -50%); /* Center the button by offsetting its own width and height */
+    width: 20px; /* Set width of the center button */
+    height: 20px; /* Set height of the center button */
+    background-color: white; /* Set background color to white for visibility */
+    border: 4px solid black; /* Add a solid black border around the button */
+    border-radius: 50%; /* Make it circular to resemble a button */
+    z-index: 10; /* Ensure this is above the main Pokéball element */
+}
+
+/* Horizontal dividing line of the Pokéball */
+.loading-screen-animation::after {
+  content: ''; /* Required for pseudo-elements, no content needed here */
+  position: absolute; /* Position it absolutely within the parent element */
+  top: 50%; /* Position from the top at 50% of the parent height */
+  left: 0; /* Position from the left at 50% of the parent width */
+  width: 100%; /* Set width of the dividing line */
+  height: 4px; /* Set height of the dividing line (thin) */
+  background-color: black; /* Set color to black for visibility */
+  transform: translateY(-50%); /* Center vertically by offsetting its own height */
+}
+
+/* Keyframes for the spinning animation */
+@keyframes spin {
+  0% {
+      transform: translate(-50%, -50%) rotate(0deg); 
+      width: 44px;
+      height: 44px;
+  }
+  100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+      width: 188px;
+      height: 188px;
+  }
+}

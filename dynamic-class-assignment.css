@@ -1,0 +1,44 @@
+.fire {
+    background-color: #E46931; /* Example background color for Fire type */
+    color: white; /* Text color for visibility */
+}
+
+.grass {
+    background-color:  #B9DAC0; /* Example background color for Fire type */
+    color:white;
+}
+
+.water {
+    background-color: #83BCDF; /* Example background color for Fire type */
+    color:white;
+}
+
+.bug {
+    background-color: #F7DC74;
+    color:white;
+}
+
+.normal {
+    background-color: #D8D2C7;
+    color:black;
+}
+
+.poison{
+    background-color: #7F529E;
+    color:white;
+}
+
+.fairy{
+    background-color:rgba(255, 192, 203, 1) ;
+    color:black;
+}
+
+.electric{
+    background-color: #F7D505;
+    color:black;
+}
+
+.ground{
+    background-color: #D17F31;
+    color:white;
+}
