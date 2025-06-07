@@ -93,3 +93,16 @@ display: flex;
     overflow: auto;
     background-color: rgba(0,0,0,0.5);
 }
+
+@media(max-width:900px) {
+    .hide-img {
+        display: none;
+    }
+}
+
+@media(max-width:399px) {
+    .P-ball {
+        display: none;
+    }
+}
+

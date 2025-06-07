@@ -6,36 +6,36 @@ function showRenderedPokemonMainData(i, pokemon, allTypes, pokeType) {
                 <h5 class="card-title">${capitalize(pokemon.name)}</h5> 
                 <p class="card-text">ID: #${pokemon.id}</p> 
                 <div>${allTypes}</div> 
-               <div>HP: ${pokemon.stats.find(stat => stat.stat.name === 'hp').base_stat}</div>
-               <div>AP: ${pokemon.stats.find(stat => stat.stat.name === 'attack').base_stat}</div>
+               <div>HP: ${pokemon.stats.find(loopVariable => loopVariable.stat.name === 'hp').base_stat}</div>
+               <div>AP: ${pokemon.stats.find(loopVariable => loopVariable.stat.name === 'attack').base_stat}</div>
             </div>
         </div>
     </div>`;
 }
 
-
-function showPokemonModal(pokemonData) {
-    // Create modal HTML
-    const modalHTML = `
-        <div class="modal fade" id="pokemonModal" tabindex="-1" role="dialog" aria-hidden="true">
+function showPokemonModal(clickedOnCard) { 
+    const modalHTML = `<div class="modal fade" id="pokemonModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button id="leftBtn" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">zurück</span>
+                            <span aria-hidden="true">back</span>
                         </button>
-                        <h5 class="modal-title">${capitalize(pokemonData.name)}</h5>
+                        <h5 class="modal-title">${capitalize( clickedOnCard.name)}</h5>
                         <button id="rightBtn" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">weiter</span>
+                            <span aria-hidden="true">next</span>
                         </button>
-                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonData.id}.svg" class="card-img-top" alt="${pokemonData.name}"
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${ clickedOnCard.id}.svg" class="card-img-top" alt="${clickedOnCard.name}"
                         class="img-fluid mb-3">
                     </div>
+                      <div>HP: ${clickedOnCard.stats.find(loopVariable => loopVariable.stat.name === 'hp').base_stat}</div>
+                         <div>AP: ${clickedOnCard.stats.find(loopVariable => loopVariable.stat.name === 'attack').base_stat}</div>
+                          <div>KG: ${(clickedOnCard.weight*0.1).toFixed(1)}</div>
+                         <div>Meter: ${(clickedOnCard.height*0.1).toFixed(1)}</div>  
                     </div>
                 </div>
             </div>
-        </div>
-    `;
+        </div>`;
 
     document.getElementById('modalRef').innerHTML = modalHTML;
         const modalElement = document.getElementById('pokemonModal');
@@ -62,4 +62,3 @@ function showPokemonModal(pokemonData) {
 function capitalize(name){
     return name.charAt(0).toUpperCase() + name.slice(1);
 }
-
