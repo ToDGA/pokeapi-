@@ -12,9 +12,8 @@ function showRenderedPokemonMainData(i, pokemon, allTypes, pokeType) {
         </div>
     </div>`;
 }
-
-function showPokemonModal(clickedOnCard) { 
-cleanupExistingModals();
+function showPokemonModal(clickedOnCard) {
+    cleanupExistingModals();
     const modalHTML = `<div class="modal fade" id="pokemonModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -22,52 +21,49 @@ cleanupExistingModals();
                         <button id="leftBtn" type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">back</span>
                         </button>
-                        <h5 class="modal-title">${capitalize( clickedOnCard.name)}</h5>
+                        <h5 class="modal-title">${capitalize(clickedOnCard.name)}</h5>
                         <button id="rightBtn" type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">next</span>
                         </button>
-                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${ clickedOnCard.id}.svg" class="card-img-top" alt="${clickedOnCard.name}"
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${clickedOnCard.id}.svg" class="card-img-top" alt="${clickedOnCard.name}"
                         class="img-fluid mb-3">
                     </div>
                       <div>HP: ${clickedOnCard.stats.find(loopVariable => loopVariable.stat.name === 'hp').base_stat}</div>
                          <div>AP: ${clickedOnCard.stats.find(loopVariable => loopVariable.stat.name === 'attack').base_stat}</div>
-                          <div>Weight: ${(clickedOnCard.weight*0.1).toFixed(1)}kg</div>
-                         <div>Height: ${(clickedOnCard.height*0.1).toFixed(1)}m</div>  
+                          <div>Weight: ${(clickedOnCard.weight * 0.1).toFixed(1)}kg</div>
+                         <div>Height: ${(clickedOnCard.height * 0.1).toFixed(1)}m</div>  
                     </div>
                 </div>
             </div>
         </div>`
-        injectModalNavigation();
+    injectModalNavigation(modalHTML);
+}
 
-function injectModalNavigation(){
+function injectModalNavigation(modalHTML) {
     document.getElementById('modalRef').innerHTML = modalHTML;
-        const modalElement = document.getElementById('pokemonModal');
-        const modal = new bootstrap.Modal(modalElement);
-        const leftBtn = document.getElementById('leftBtn');
-        const rightBtn = document.getElementById('rightBtn');
-        leftBtn.addEventListener('click', () => {
-            if (currentPokemonIndex > 0) {
-                modal.hide();
-                currentPokemonIndex = currentPokemonIndex - 1;
-                fetchPokemonCardData(allPokemons[currentPokemonIndex].id);
-            }
-        });   
-        rightBtn.addEventListener('click', () => {
-            if (currentPokemonIndex < allPokemons.length - 1) {
-                modal.hide();
-                currentPokemonIndex = currentPokemonIndex + 1;
-                fetchPokemonCardData(allPokemons[currentPokemonIndex].id);
-            }
-        });        
-        modal.show();
-}};
+    const modal = new bootstrap.Modal(document.getElementById('pokemonModal'));
+    setupModalButton('leftBtn', -1, modal);
+    setupModalButton('rightBtn', 1, modal);
+    modal.show();
+}
+
+function setupModalButton(buttonId, direction, modal) {
+    document.getElementById(buttonId).addEventListener('click', () => {
+        const nextIndex = currentPokemonIndex + direction;
+        if (nextIndex >= 0 && nextIndex < allPokemons.length) {
+            modal.hide();
+            currentPokemonIndex = nextIndex;
+            fetchPokemonCardData(allPokemons[nextIndex].id);
+        }
+    });
+}
 
 function cleanupExistingModals() {
     const backdrops = document.querySelectorAll('.modal-backdrop');
     backdrops.forEach(backdrop => backdrop.remove());
-    document.body.classList.remove('modal-open');  
+    document.body.classList.remove('modal-open');
 }
 
-function capitalize(name){
+function capitalize(name) {
     return name.charAt(0).toUpperCase() + name.slice(1);
 }
