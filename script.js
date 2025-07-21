@@ -59,13 +59,12 @@ function fetchPokemonCardData(pokemonId) {
 function searchPokemon() {
     let input = document.getElementById('input').value.toLowerCase().trim();
     if (input !== "") {
-        let index = allPokemons.findIndex(pokemon =>
-            pokemon.name.toLowerCase().includes(input));
+        let index = allPokemons.findIndex(pokemon =>pokemon.name.toLowerCase().includes(input));
         if (index !== -1) {
             renderSearch(index);
         } else {
             let pokeCard = document.getElementById('pokedex');
-            pokeCard.innerHTML = '<p>Nix gefunden</p>';
+            pokeCard.innerHTML = '<p>There is no Pokémon with that name. Check your spelling, load more and try again!</p>';
         }
     } else {
         renderPokemons();

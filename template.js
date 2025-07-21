@@ -4,7 +4,7 @@ function showRenderedPokemonMainData(i, pokemon, allTypes, pokeType) {
                 <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg" class="card-img-top" alt="${pokemon.name}"> 
                 <div class="card-body">
                 <h5 class="card-title">${capitalize(pokemon.name)}</h5> 
-                <p class="card-text">ID: #${pokemon.id}</p> 
+                <p class="card-text text-center">ID: #${pokemon.id}</p> 
                 <div>${allTypes}</div> 
                <div>HP: ${pokemon.stats.find(loopVariable => loopVariable.stat.name === 'hp').base_stat}</div>
                <div>AP: ${pokemon.stats.find(loopVariable => loopVariable.stat.name === 'attack').base_stat}</div>
@@ -14,6 +14,7 @@ function showRenderedPokemonMainData(i, pokemon, allTypes, pokeType) {
 }
 
 function showPokemonModal(clickedOnCard) { 
+cleanupExistingModals();
     const modalHTML = `<div class="modal fade" id="pokemonModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -30,13 +31,15 @@ function showPokemonModal(clickedOnCard) {
                     </div>
                       <div>HP: ${clickedOnCard.stats.find(loopVariable => loopVariable.stat.name === 'hp').base_stat}</div>
                          <div>AP: ${clickedOnCard.stats.find(loopVariable => loopVariable.stat.name === 'attack').base_stat}</div>
-                          <div>KG: ${(clickedOnCard.weight*0.1).toFixed(1)}</div>
-                         <div>Meter: ${(clickedOnCard.height*0.1).toFixed(1)}</div>  
+                          <div>Weight: ${(clickedOnCard.weight*0.1).toFixed(1)}kg</div>
+                         <div>Height: ${(clickedOnCard.height*0.1).toFixed(1)}m</div>  
                     </div>
                 </div>
             </div>
-        </div>`;
+        </div>`
+        injectModalNavigation();
 
+function injectModalNavigation(){
     document.getElementById('modalRef').innerHTML = modalHTML;
         const modalElement = document.getElementById('pokemonModal');
         const modal = new bootstrap.Modal(modalElement);
@@ -57,6 +60,12 @@ function showPokemonModal(clickedOnCard) {
             }
         });        
         modal.show();
+}};
+
+function cleanupExistingModals() {
+    const backdrops = document.querySelectorAll('.modal-backdrop');
+    backdrops.forEach(backdrop => backdrop.remove());
+    document.body.classList.remove('modal-open');  
 }
 
 function capitalize(name){
