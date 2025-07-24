@@ -39,31 +39,4 @@ function showPokemonModal(clickedOnCard) {
     injectModalNavigation(modalHTML);
 }
 
-function injectModalNavigation(modalHTML) {
-    document.getElementById('modalRef').innerHTML = modalHTML;
-    const modal = new bootstrap.Modal(document.getElementById('pokemonModal'));
-    setupModalButton('leftBtn', -1, modal);
-    setupModalButton('rightBtn', 1, modal);
-    modal.show();
-}
 
-function setupModalButton(buttonId, direction, modal) {
-    document.getElementById(buttonId).addEventListener('click', () => {
-        const nextIndex = currentPokemonIndex + direction;
-        if (nextIndex >= 0 && nextIndex < allPokemons.length) {
-            modal.hide();
-            currentPokemonIndex = nextIndex;
-            fetchPokemonCardData(allPokemons[nextIndex].id);
-        }
-    });
-}
-
-function cleanupExistingModals() {
-    const backdrops = document.querySelectorAll('.modal-backdrop');
-    backdrops.forEach(backdrop => backdrop.remove());
-    document.body.classList.remove('modal-open');
-}
-
-function capitalize(name) {
-    return name.charAt(0).toUpperCase() + name.slice(1);
-}

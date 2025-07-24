@@ -35,6 +35,7 @@ body{
 .pokedex{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 72px;
     width: 90%;
     max-width: 1920px;

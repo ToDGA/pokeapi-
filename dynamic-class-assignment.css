@@ -1,21 +1,21 @@
 .fire {
     background-color: #E46931; 
-    color: white; 
+    color:black; 
 }
 
 .grass {
     background-color:  #B9DAC0; 
-    color:white;
+    color:black;
 }
 
 .water {
     background-color: #83BCDF; 
-    color:white;
+    color:black;
 }
 
 .bug {
     background-color: #F7DC74;
-    color:white;
+    color:black;
 }
 
 .normal {
@@ -25,7 +25,7 @@
 
 .poison{
     background-color: #7F529E;
-    color:white;
+    color:black;
 }
 
 .fairy{
@@ -40,5 +40,5 @@
 
 .ground{
     background-color: #D17F31;
-    color:white;
+    color:black;
 }
